@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html ng-app="MyApp">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+</head>
+
+<body>
+
+<div ng-controller="controlador">
+
+    Nome:<input type="text" ng-model="nome">
+
+</div>
+
+<span id="para"></span>
+
+<script>
+
+    angular.module('MyApp', []).controller('controlador', function ($scope) {
+
+            $scope.nome = "João";
+            $scope.sobrenome = "Maria";
+
+            $scope.$watch('nome' , function () { // escuta mudanças
+
+                para.append(($scope.nome));
+                var mybr = document.createElement('br');
+                para.appendChild(mybr);
+            });
+        });
+</script>
+
+</body>
+
+
+</html>

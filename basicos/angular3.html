@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html ng-app="MyApp">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+</head>
+
+<body>
+
+<div ng-controller="lista">
+
+    <h2>Total pessoas:{{pessoas.length}}</h2>
+
+    <ul>
+        <li ng-repeat="pessoa in pessoas | filter:busca"> <!-- Filtra a lista -->
+            {{pessoa.nome}} , <b>{{pessoa.cidade}}</b>
+            <button ng-click="deletar($index)">Remover da lista</button>
+        </li>
+    </ul>
+
+    <h2 id="naoPode"></h2>
+
+    <div>
+        <br><br>Nome:<input type="text" ng-model="vNome"><br>
+        Cidade:<input type="text" ng-model="vCidade"><br>
+
+        <button ng-click="adicionar()">Adicionar a lista</button>
+
+    </div>
+
+</div>
+
+</body>
+
+<script>
+
+    // usando injeção de dependencia do angular
+
+    angular.module('MyApp', []).controller('lista', ["$scope", function (gustavo) {
+
+        gustavo.pessoas = [
+
+            {nome: "Maria", cidade: "Sao paulo"},
+            {nome: "Joao", cidade: "Uberlandia"},
+            {nome: "Gustavo", cidade: "Caldas Novas"},
+            {nome: "Teste", cidade: "Uberaba"},
+            {nome: "Joaquim", cidade: "Ribeirão Preto"},
+            {nome: "Bruno", cidade: "BH"},
+            {nome: "Paulo", cidade: "Manaus"},
+            {nome: "Marcelo", cidade: "Pirajuba"}
+        ];
+
+        gustavo.adicionar = function () {
+
+            naoPode.innerHTML = "";
+
+            if (gustavo.vNome && gustavo.vCidade) {
+
+                gustavo.pessoas.push({
+                    nome: gustavo.vNome,
+                    cidade: gustavo.vCidade,
+                })
+            } else {
+
+                naoPode.append("Não pode deixar em branco os campos!");
+            }
+
+            gustavo.vNome = "";
+            gustavo.vCidade = "";
+        };
+
+        gustavo.deletar = function (index) {
+            gustavo.pessoas.splice(index, 1);
+        };
+    }]);
+
+</script>
+
+</html>

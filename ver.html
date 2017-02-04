@@ -1,0 +1,36 @@
+<div>
+    <h2>Total pessoas nessa lista:{{pessoas.length}}</h2>
+
+    Buscar pessoa na lista:<input type="search" ng-model="busca">
+
+    <ul>
+        <li ng-repeat="pessoa in pessoas | filter:busca"> <!-- Filtra a lista -->
+            {{pessoa.id}} - <b>{{pessoa.nome}}</b>, <b>{{pessoa.cidade}}</b>
+        </li>
+    </ul>
+
+    <h2>Selecionar indivíduo</h2>
+
+    <select ng-model="selected"
+            ng-options="pessoa.nome for pessoa in pessoas | filter:busca">
+        <option value="">Selecione alguem</option>
+    </select>
+
+    <div>
+        <h2>Pessoa Selecionada</h2>
+        Nome:<input type="text" ng-model="selected.nome">
+        Cidade:<input type="text" ng-model="selected.cidade"><br>
+    </div>
+    <hr>
+
+    <h4>Clique sobre o nome para editar</h4>
+
+    <ul>
+        <li ng-repeat="pessoa in pessoas"> <!-- Filtra a lista -->
+            <a href="#!/pessoa/{{$index}}"><b>{{pessoa.nome}}</b></a>
+        </li>
+    </ul>
+
+    <br><a href="#!/pessoa/adicionar">Adicionar nova pessoa</a>
+    <br><a href="#!/pessoa/deletar">Remover pessoa</a>
+</div>
