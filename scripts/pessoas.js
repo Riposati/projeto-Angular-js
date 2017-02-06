@@ -138,10 +138,10 @@ angular.module('Aplicacao', ['ngRoute'])
                 var x = $scope.pessoa.nome;
                 var y = $scope.pessoa.cidade;
 
-                if (x.length == '') {
+                if (x.length == 0) {
                     $scope.pessoa.nome = "sem nome";
                 }
-                if (y.length == '') {
+                if (y.length == 0) {
                     $scope.pessoa.cidade = "sem cidade";
                 }
             }

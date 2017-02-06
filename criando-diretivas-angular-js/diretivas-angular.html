@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt" ng-app="MyApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Project</title>
+</head>
+<body>
+
+<div ng-controller="CtrlFiltro">
+
+    <!-- <button son-click="executa()">Clique</button> --> <!-- Diretiva tipo atributo -->
+    <son-clic click="executa()">Clic</son-clic> <!-- Diretiva elemento -->
+
+</div>
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+
+<script>
+
+    angular.module('MyApp', [])
+
+        .directive('sonClick', function () {
+
+            return {
+
+                restrict: 'A',
+                link: function (scope, element, attrs) {
+
+                    element.bind('click', function () {
+
+                        scope.$eval(attrs.sonClick);
+                    })
+                }
+            };
+        })
+
+        .directive('sonClic', function () {
+
+            return {
+                restrict: 'E',
+                replace: true,
+                transclude: true,
+                template: '<button ng-transclude></button>',
+
+                link: function (scope, element, attrs) {
+
+                    element.bind('click', function () {
+
+                        scope.$eval(attrs.click);
+                    })
+                }
+            };
+        })
+
+        .controller('CtrlFiltro', function ($scope) {
+
+            $scope.executa = function () {
+
+                alert('diretiva clicada');
+            }
+        });
+
+</script>
+
+</html>
+

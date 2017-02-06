@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt" ng-app="MyApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Project</title>
+</head>
+<body>
+
+<div ng-controller="CtrlFiltro">
+
+    <h1>{{frase | case: 'upper'}}</h1>
+
+</div>
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+
+<script>
+
+    angular.module('MyApp', [])
+
+        .filter('case', function () {
+
+            return function (input, tipo) {
+
+                if (tipo === 'upper') {
+                    return input.toUpperCase();
+
+                } else
+                    return input.toLowerCase();
+            }
+        })
+
+        .controller('CtrlFiltro', function ($scope) {
+
+            $scope.frase = "ola Gustavo ao angular js";
+        });
+
+</script>
+
+</html>
+
